@@ -468,7 +468,7 @@ span {
   position: absolute;
   width: 5px;
   height: 100%;
-  background-color: var(--main-color);
+  background-color: white;
   left: calc(50% - 1px);
 }
 .timeline-item {
@@ -489,7 +489,7 @@ span {
 .timeline-dot {
   height: 21px;
   width: 21px;
-  background-color: var(--main-color);
+  background-color: white;
   position: absolute;
   left: calc(50% - 8px);
   border-radius: 50%;
