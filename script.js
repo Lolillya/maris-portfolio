@@ -91,6 +91,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeBtn = document.querySelector('.close');
   const projectBoxes = document.querySelectorAll('.projects-box');
 
+  // Function to parse and structure project descriptions
+  function parseProjectDescription(description) {
+    // For the ERP project, parse the structured information
+    if (description.includes('Cornerstone Bakehouse') && description.includes('ERP')) {
+      return `
+        <div class="project-info">
+          <div class="info-section full-description">
+            <h3>Full Description</h3>
+            <p>${description}</p>
+          </div>
+          
+          <div class="info-section">
+            <h3>1. Business Name</h3>
+            <p>The Cornerstone Bakehouse</p>
+          </div>
+          
+          <div class="info-section">
+            <h3>2. Brief Business Type</h3>
+            <p>Locally owned bakery specializing in tarts and brownies, operating both an online store and a physical stall at the mall</p>
+          </div>
+          
+          <div class="info-section">
+            <h3>3. Main Problem or Solution</h3>
+            <p>Improve efficiency, streamline operations, and enhance customer satisfaction by adopting a customized ERP (Enterprise Resource Planning) system</p>
+          </div>
+          
+          <div class="info-section">
+            <h3>4. ERP Name</h3>
+            <p>Customized ERP (Enterprise Resource Planning) system for small-scale food businesses</p>
+          </div>
+          
+          <div class="info-section">
+            <h3>5. List of Modules</h3>
+            <ul>
+              <li>Sales and Order Management</li>
+              <li>Kitchen Operations</li>
+              <li>Quality Control</li>
+              <li>Packaging</li>
+              <li>Delivery Management</li>
+            </ul>
+          </div>
+          
+          <div class="info-section">
+            <h3>6. Specific Operations</h3>
+            <ul>
+              <li>Centralized order processing from both online and in-person channels</li>
+              <li>Automated task scheduling for the kitchen team</li>
+              <li>Quality monitoring protocols</li>
+              <li>Coordinated packaging and delivery logistics</li>
+              <li>Reducing manual errors and improving coordination among teams</li>
+              <li>Ensuring fresh, high-quality baked goods are delivered efficiently</li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    
+    // For other projects, display as regular description
+    return `<p>${description}</p>`;
+  }
+
   projectBoxes.forEach(box => {
     box.addEventListener('click', function(e) {
       // Prevent link clicks from triggering modal
@@ -98,7 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const desc = box.getAttribute('data-description') || '';
       const title = box.querySelector('h4') ? box.querySelector('h4').textContent : '';
       const img = box.querySelector('img') ? box.querySelector('img').src : '';
-      modalDesc.textContent = desc;
+      
+      modalDesc.innerHTML = parseProjectDescription(desc);
       modalTitle.textContent = title;
       modalImage.src = img;
       modal.style.display = 'block';
